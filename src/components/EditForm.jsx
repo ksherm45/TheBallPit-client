@@ -12,7 +12,7 @@ function EditForm(props) {
     useEffect(() => {
         const getData = async () => {
            // Fetching info for a single todo  
-           let response = await axios.get(`http://localhost:5005/api/balls/${ballId}`)
+           let response = await axios.get(`http://localhost:5005/api/ball/${ballId}`)
            setBallDetail(response.data)
         }
         getData()

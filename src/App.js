@@ -6,7 +6,6 @@ import ErrorPage from './components/ErrorPage';
 import HomePage from './components/HomePage';
 import LandingPage from './components/LandingPage';
 import ProfilePage from './components/ProfilePage';
-import RandomBall from './components/RandomBall';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
@@ -110,8 +109,9 @@ function App() {
   }
 
   const handleDelete = async (id) => {
+    console.log(id,'wooo josh is back!!')
     // make a request to the server to delete it from the database
-    await axios.delete(`http://localhost:5005/api/balls/${id}`)
+    await axios.delete(`http://localhost:5005/api/ball/${id}`)
 
     // Update your state 'todos' and remove the todo that was deleted
     let filteredBalls = balls.filter((elem) => {
@@ -145,7 +145,7 @@ function App() {
   <Route path="/ball/:ballId/edit" element={<EditForm btnEdit={handleEdit}/>} />
   <Route path='/signin' element={<SignIn onSignIn={handleSignIn}/>} />
   <Route path='/signup' element={<SignUp />} /> 
-  <Route path='/profile' element={<ProfilePage />} />
+  <Route path='/profile' element={<ProfilePage balls={balls} />} />
   <Route path='/404' element={<ErrorPage />} />
   </Routes>
 
