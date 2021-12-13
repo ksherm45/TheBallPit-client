@@ -19,12 +19,12 @@ import {useContext} from 'react'
 function App() {
 
   const [balls, setBalls] = useState([])
-  const {user, setUser} = useState([])
-  //const [myError, setError] = useState(null)   ======come back to this when error page is complete
+  const [user, setUser] = useState(null)
+  const [myError, setError] = useState(null)  
   // setting it to ‘true’ so that we can show a loading screen and make the user wait until this API finishes
   const [fetchingUser, setFetchingUser] = useState(true)
   // This hook is for us to redirect users to different urls
- // const navigate = useNavigate()          // reinstate this if all fails 1
+  const navigate = useNavigate()          // reinstate this if all fails 1
   // This runs only --ONCE-- when the component is mounted
   useEffect(() => {
       const getData = async () => {
@@ -121,16 +121,41 @@ function App() {
     setBalls(filteredBalls)
   }
  
-  function handleSignIn(){
 
-    console.log('signed in')
+    const handleSignIn = async (event) => {
+    event.preventDefault()
+    try {
+      let newUser = {
+        email: event.target.email.value,
+        password: event.target.password.value
+      }
+      console.log("signin",newUser)
+      let response = await axios.post(`${API_URL}/signin`, newUser, {withCredentials: true})
+      setUser(response.data)
+      navigate('/homepage')
+    }
+    catch(err){
+      //console.log(err.response)
+      setError(err.response.data)
+    }
   }
 
+  
   const handleLogout = async () => {
     await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
     setUser(null)
+
+    navigate('/signin')
 }
 
+const handleComment = async (event) => {
+  event.preventDefault()
+  console.log(event.target.comment.value)
+  let newComment = {comment: event.target.comment.value}
+  let commentResponse = await axios.post(`${API_URL}/comment`, newComment)
+  console.log(commentResponse.data)
+
+}
 
   
   return (
@@ -141,9 +166,9 @@ function App() {
   <Route path="/" element={<LandingPage  /> } />
   <Route path='/homepage' element={<HomePage balls={balls}/> } />
   <Route path="/add-form" element={<AddForm btnSubmit={handleSubmit}/> } />
-  <Route path="/ball/:ballId" element={<BallPage btnDelete={handleDelete} />} />
+  <Route path="/ball/:ballId" element={<BallPage btnDelete={handleDelete} btnComment={handleComment} />} />
   <Route path="/ball/:ballId/edit" element={<EditForm btnEdit={handleEdit}/>} />
-  <Route path='/signin' element={<SignIn onSignIn={handleSignIn}/>} />
+  <Route path='/signin' element={<SignIn myError={myError} onSignIn={handleSignIn}/>} />
   <Route path='/signup' element={<SignUp />} /> 
   <Route path='/profile' element={<ProfilePage balls={balls} />} />
   <Route path='/404' element={<ErrorPage />} />

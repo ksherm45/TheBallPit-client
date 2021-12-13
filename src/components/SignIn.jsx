@@ -11,9 +11,11 @@ import {Link} from 'react-router-dom'
 
 const theme = createTheme();
 
+
 function SignIn(props) {
 
   return (
+    <>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -28,7 +30,7 @@ function SignIn(props) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={props.onSignIn} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -68,7 +70,19 @@ function SignIn(props) {
         </Box>
       </Container>
     </ThemeProvider>
+    
+    <div>
+
+{props.myError ? <p>Incorrect Password</p> : null  }
+
+
+
+  </div>
+    
+     </>
   );
+
+
 }
 
 export default SignIn

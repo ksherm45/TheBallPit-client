@@ -23,7 +23,8 @@ function BallPage(props) {
         return <Spinner animation="grow" variant="dark" />
     }
 
-    const {btnDelete} = props
+    const {btnDelete, btnComment} = props
+
 
     return (
         <div>
@@ -33,6 +34,13 @@ function BallPage(props) {
             <button>
                 <Link to={`/ball/${ballPage._id}/edit`} >Edit</Link>
             </button>
+            <form onSubmit={btnComment}>
+			<input  name="comment"  type="text"  placeholder="Enter Your Comment"/>
+		
+
+			<button  type="submit"  >Submit</button>
+		</form>
+
             <button onClick={() => { btnDelete(ballPage._id)  }  } >Delete</button>
         </div>
     )
