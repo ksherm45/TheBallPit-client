@@ -1,5 +1,7 @@
 import {Navbar, Nav} from  'react-bootstrap'
 import {Link} from  'react-router-dom'
+import Button from '@mui/material/Button';
+
 
 function MyNav(props) {
 
@@ -17,7 +19,7 @@ return (
 				<>
 						<Link  style={{marginLeft: '10px'}}  to="/signin">SignIn</Link>
 						<Link  style={{marginLeft: '10px'}}  to="/signup">SignUp</Link>
-						<button onClick={Logout}>Logout</button>
+						<Button  variant="contained" color="primary" onClick={Logout}>Logout</Button>
 						</>
 			</Nav>
 		</Navbar.Collapse>

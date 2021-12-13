@@ -15,8 +15,12 @@ import SignIn from "./components/SignIn";
 import SignUp from './components/SignUp'
 import {API_URL} from './config'
 import {useContext} from 'react'
+import Button from '@mui/material/Button';
+import SaveIcon from '@material-ui/icons/'
 
 function App() {
+
+  
 
   const [balls, setBalls] = useState([])
   const [user, setUser] = useState(null)
@@ -57,6 +61,7 @@ function App() {
 
       const getData = async () => {
           let response  = await axios.get('http://localhost:5005/api/homepage')
+         console.log(response.data)
           setBalls(response.data)
       }
 
@@ -159,7 +164,16 @@ const handleComment = async (event) => {
 
   
   return (
+
     <div>
+
+    <Button
+   
+     variant="contained"
+     color="primary" >
+     Hello world
+     
+     </Button>
     <MyNav Logout={handleLogout} />
  
   <Routes>
