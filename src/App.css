@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.BallDecoraction {
+
+display:flex;
+align-items: center;
+justify-content: center;
+
+
+
+background-color: blue;
+width: 200px;
+height: 200px;
+border-radius: 100px;
+margin: 20px;
+text-decoration: none;
+}
+
+.mr-auto {
+
+  background-color: #e8106e85;
+}

@@ -1,6 +1,8 @@
 import React from 'react'
 import {Spinner} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+require('../App.css')
+
 
 function HomePage(props) {
 
@@ -16,7 +18,7 @@ function HomePage(props) {
             {
                 balls.map((elem) => {
                     return (
-                        <div key={elem._id}>
+                        <div key={elem._id} className = "BallDecoraction"  >
                             <Link to={`/ball/${elem._id}`}>{elem.name}</Link>
                         </div>    
                     )
