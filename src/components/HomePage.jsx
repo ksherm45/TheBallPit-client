@@ -14,7 +14,7 @@ function HomePage(props) {
 
     return (
         <div>
-            <p>BallList Component</p>
+            <p>BallList</p>
             {
                 balls.map((elem) => {
                     return (

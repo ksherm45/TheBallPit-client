@@ -16,7 +16,8 @@ import SignUp from './components/SignUp'
 import {API_URL} from './config'
 import {useContext} from 'react'
 import Button from '@mui/material/Button';
-import SaveIcon from '@material-ui/icons/'
+
+
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
   // This runs only --ONCE-- when the component is mounted
   useEffect(() => {
       const getData = async () => {
-          let response  = await axios.get(`${API_URL}/balls`,{withCredentials: true})
+          let response  = await axios.get(`${API_URL}/homepage`,{withCredentials: true})
           setBalls(response.data)
           // -----------------------------------------------
           // we make the user requst here to know if the user is logged in or not
@@ -48,26 +49,8 @@ function App() {
           // -----------------------------------------------
       }
       getData()
-  }, [setUser])
-  // Runs everytime ‘balls’ gets updates - a conditional did update
-  useEffect(() => {
-   // navigate('/')       // check back here  2
-  }, [balls, user])       // add back use navigate here if all fails 3
- 
-  
-  // This hook is for us to redirect users to different urls
-  // This runs only --ONCE-- when the component is mounted
-  useEffect(() => {
-
-      const getData = async () => {
-          let response  = await axios.get('http://localhost:5005/api/homepage')
-         console.log(response.data)
-          setBalls(response.data)
-      }
-
-      getData()
-
   }, [])
+  
 
   // // Runs everytime 'balls' gets updates - a conditional did update
   // useEffect(() => {
@@ -162,19 +145,11 @@ const handleComment = async (event) => {
 
 }
 
-  
+  console.log("here", {balls})
   return (
 
     <div>
-
-    <Button
-   
-     variant="contained"
-     color="primary" >
-     Hello world
-     
-     </Button>
-    <MyNav Logout={handleLogout} />
+    <MyNav user={user} Logout={handleLogout} />
  
   <Routes>
   <Route path="/" element={<LandingPage  /> } />

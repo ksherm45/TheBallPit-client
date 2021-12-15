@@ -1,0 +1,48 @@
+import React from “react”;
+import { Navbar, Nav } from “react-bootstrap”;
+import { Link } from “react-router-dom”;
+
+function MyNav(props) {
+  const { user, onLogout } = props;
+  return (
+    <div className=“header2">
+      <div>
+        <Navbar id=“navbar” bg=“light” expand=“lg”>
+          <Navbar.Toggle className=“body” aria-controls=“basic-navbar-nav” />
+          <Navbar.Collapse id=“basic-navbar-nav”>
+            <Nav className=“mr-auto”>
+              <Link className=“nav-link” to=“/”>
+                <h3>Events</h3>
+              </Link>
+              <Link className=“nav-link” to=“/profile”>
+                <h3>Profile</h3>
+              </Link>
+              
+              </Link>
+              <Link className=“nav-link” to=“/add-form”>
+                <h3>Add Ball</h3>
+              </Link>
+              {user ? (
+                <Link className=“nav-link” to=“/” onClick={onLogout}>
+                  <h3>Logout</h3>
+                </Link>
+              ) : (
+                <>
+                  <div>
+                    <Link className=“login-links” to=“/signin”>
+                      Login
+                    </Link>
+                    <Link className=“login-links” to=“/signup”>
+                      SignUp
+                    </Link>
+                  </div>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
+    </div>
+  );
+}
+export default MyNav;

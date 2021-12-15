@@ -6,24 +6,32 @@ require('../App.css')
 
 function MyNav(props) {
 
-const {Logout} = props
+const {user, Logout} = props
 
 return (
-	<Navbar  bg="dark"  expand="lg">
-		<Navbar.Toggle  aria-controls="basic-navbar-nav"  />
+	<Navbar className='Navbar'  bg="dark"  expand="lg">
+		
 		<Navbar.Collapse  id="basic-navbar-nav">
 			<Nav  className="mr-auto">
-				<Link  to="/homepage">Home</Link>    
-				<Link  style={{marginLeft: '10px'}}  to="/add-form">Add Ball</Link>
-				<Link style={{marginLeft: '10px'}} to="/profile">Profile</Link>
-			
-				<>
-						<Link  style={{marginLeft: '10px'}}  to="/signin">SignIn</Link>
-						<Link  style={{marginLeft: '10px'}}  to="/signup">SignUp</Link>
-						<Button  variant="contained" color="primary" onClick={Logout}>Logout</Button>
-						</>
-			</Nav>
-		</Navbar.Collapse>
+				<Link className='Link' to="/homepage">Home</Link>    
+				<Link  className='Link' to="/add-form">Add Ball</Link>
+				<Link className='Link' to="/profile">Profile</Link>
+				</Nav>
+				</Navbar.Collapse>
+				<div><h1 className='title'> THE BALL PIT</h1></div>
+				<div>
+
+{ !user ? (
+				<div>
+						<Link  className='Link' to="/signin">SignIn</Link>
+						<Link className='Link'  to="/signup">SignUp</Link>
+					</div> ) : (
+
+						<Button  variant="contained" color="primary" onClick={Logout}>Logout</Button> )
+}
+						</div>
+
+		
 	</Navbar>
 	)
 }
