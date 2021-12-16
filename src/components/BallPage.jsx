@@ -23,14 +23,14 @@ function BallPage(props) {
         return <Spinner animation="grow" variant="dark" />
     }
 
-    const {btnDelete, btnComment} = props
+    const {btnDelete, btnComment, btnAddProfile} = props
 
 
     return (
         <div>
-            <h2>Ball Detail Component</h2>
-            <h4>Name: {ballPage.name}</h4>
-            <h4>Desc: {ballPage.description}</h4>
+            <h2></h2>
+            <h4 className='innerText'>Name: {ballPage.name}</h4>
+            <h4 className='innerText'>Desc: {ballPage.description}</h4>
             <button>
                 <Link to={`/ball/${ballPage._id}/edit`} >Edit</Link>
             </button>
@@ -40,7 +40,7 @@ function BallPage(props) {
 
 			<button  type="submit"  >Submit</button>
 		</form>
-
+         <div>  <button onClick={(event) => { btnAddProfile(event, ballPage._id, ballPage.name, ballPage.description)  }  } >Add to your Profile</button> </div>
             <button onClick={() => { btnDelete(ballPage._id)  }  } >Delete</button>
         </div>
     )

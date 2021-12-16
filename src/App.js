@@ -68,6 +68,7 @@ function App() {
       // Pass an object as a 2nd param in POST requests
       let response = await axios.post('http://localhost:5005/api/create', newBall)
       setBalls([response.data, ...balls])
+      navigate('/homepage')
   }
 
   const handleEdit = async (event, id) => {
@@ -104,9 +105,11 @@ function App() {
     // Update your state 'todos' and remove the todo that was deleted
     let filteredBalls = balls.filter((elem) => {
       return elem._id !== id
+    
     })
 
     setBalls(filteredBalls)
+    navigate('/homepage')
   }
  
 
@@ -145,7 +148,16 @@ const handleComment = async (event) => {
 
 }
 
-  console.log("here", {balls})
+const handleAddProfile = async (event, id, name, desc) => {
+  event.preventDefault()
+  console.log("test", event,id,name,desc)
+  let addedBall = {id: id, name:name, desc:desc}
+  let addBallResponse = await axios.patch(`${API_URL}/addedball`, {addedBall} ,{withCredentials: true})
+  setUser( addBallResponse.data)
+  navigate('/profile')
+}
+
+  
   return (
 
     <div>
@@ -155,12 +167,13 @@ const handleComment = async (event) => {
   <Route path="/" element={<LandingPage  /> } />
   <Route path='/homepage' element={<HomePage balls={balls}/> } />
   <Route path="/add-form" element={<AddForm btnSubmit={handleSubmit}/> } />
-  <Route path="/ball/:ballId" element={<BallPage btnDelete={handleDelete} btnComment={handleComment} />} />
+  <Route path="/ball/:ballId" element={<BallPage btnAddProfile={handleAddProfile} btnDelete={handleDelete} btnComment={handleComment} />} />
   <Route path="/ball/:ballId/edit" element={<EditForm btnEdit={handleEdit}/>} />
   <Route path='/signin' element={<SignIn myError={myError} onSignIn={handleSignIn}/>} />
   <Route path='/signup' element={<SignUp />} /> 
-  <Route path='/profile' element={<ProfilePage balls={balls} />} />
+  <Route path='/profile' element={<ProfilePage user={user} />} />
   <Route path='/404' element={<ErrorPage />} />
+  <Route path='/profile' element={<ProfilePage btnAddProfile={handleAddProfile} />} />
   </Routes>
 
     </div>

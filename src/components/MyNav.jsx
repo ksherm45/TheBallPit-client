@@ -27,7 +27,7 @@ return (
 						<Link className='Link'  to="/signup">SignUp</Link>
 					</div> ) : (
 
-						<Button  variant="contained" color="primary" onClick={Logout}>Logout</Button> )
+						<Button  variant="contained" color="secondary" onClick={Logout}>Logout</Button> )
 }
 						</div>
 

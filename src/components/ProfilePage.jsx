@@ -4,9 +4,10 @@ import {Spinner} from 'react-bootstrap'
 
 function ProfilePage(props){
 
-    const {balls} = props
+    const {user} = props
+    console.log('hellooo', user)
 
-    if(!balls.length) {
+    if(!user) {
         return <Spinner animation="grow" variant="dark" />
     }
 
@@ -14,13 +15,17 @@ function ProfilePage(props){
         <div>
             <p>BallList Component</p>
             {
-                balls.map((elem) => {
+                user.addedBall ? (
+                user.addedBall.map((elem) => {
                     return (
-                        <div key={elem._id}>
-                            <Link to={`/ball/${elem._id}`}>{elem.name}</Link>
+                        <div key={elem.id}>
+                            
+                            <h4>{elem.name}</h4>
+                            <h4>{elem.desc}</h4>
                         </div>    
                     )
-                })
+                }))
+                : null
             }
         </div>
     )

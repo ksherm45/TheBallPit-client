@@ -14,7 +14,7 @@ function HomePage(props) {
 
     return (
         <div>
-            <p>BallList</p>
+            <p>Pick a Ball</p>
             {
                 balls.map((elem) => {
                     return (

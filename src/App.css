@@ -18,17 +18,35 @@ font-size: x-large;
 outline: auto;
 }
 
+.Landing{
+  display: flex;
+  align-items: center;
+  color: whitesmoke;
+  text-decoration-color: rgb(181, 245, 179);
+}
 
 .Navbar{
 
-background-color: rgba(5, 23, 122, 0.596);
+background-color: rgba(5, 23, 122, 0.911);
 height: 100px;
 display: flex;
 align-items: center;
 justify-content: space-between;
 
+}
 
-
+.innerText{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+  
+  background-color: rgb(108, 106, 211);
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  margin: 20px;
 }
 
 .Link{
